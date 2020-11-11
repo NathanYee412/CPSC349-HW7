@@ -12,7 +12,7 @@ function registerOpenHandler(handlerFunction) {
     };
 }
 
-function registersMessageHandler(handlerFunction) {
+function registerMessageHandler(handlerFunction) {
     socket.onmessage = (e) => {
         console.log('message', e.data);
         let data = JSON.parse(e.data);
@@ -27,8 +27,7 @@ function sendMessage(payload) {
 export default {
     init,
     registerOpenHandler,
-    registersMessageHandler,
+    registerMessageHandler,
     sendMessage
 }
 
-// on P340
