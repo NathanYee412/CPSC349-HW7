@@ -2,10 +2,11 @@ import $ from 'jquery';
 import moment from 'moment';
 import md5 from 'crypto-js/md5';
 
-function createGravitarUrl(username) {
+function createGravatarUrl(username) {
     let userhash = md5(username);
     return `http://www.gravatar.com/avatar/${userhash.toString()}`;
 }
+
 export function promptForUsername() {
     let username = prompt('Enter a username ');
     return username.toLowerCase();
@@ -24,6 +25,7 @@ export class ChatForm {
             submitCallback(val);
             this.$input.val('');
         });
+        
 
         this.$form.find('button').on('click', () => this.$form.submit());
     }
@@ -35,7 +37,7 @@ export class ChatList {
         this.username = username;
     }
 
-    drawMesage({ user: u, timestamp: t, message: m }) {
+    drawMessage({user: u, timestamp: t, message: m}) {
         let $messageRow = $('<li>', {
             'class': 'message-row'
         });
@@ -45,6 +47,7 @@ export class ChatList {
         }
         
         let $message = $('<p>');
+
         $message.append($('<span>', {
             'class': 'message-username',
             text: u
@@ -62,13 +65,12 @@ export class ChatList {
         }));
         
         let $img = $('<img>', {
-            src: createGravitarUrl(u),
+            src: createGravatarUrl(u),
             title: u
         });
 
         $messageRow.append($img);
         $messageRow.append($message);
-        // correction from blog
         this.$list.append($messageRow);
         $messageRow.get(0).scrollIntoView();
     }
