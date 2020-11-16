@@ -28,11 +28,12 @@ class ChatApp {
         });
         socket.registerMessageHandler((data) => {
             console.log(data);
-            let message = new ChatMessage({message: data});
+            let message = new ChatMessage(data);
             this.chatList.drawMessage(message.serialize());
         });
     }
 }
+
 
 class ChatMessage {
     constructor({
